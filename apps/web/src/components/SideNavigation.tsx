@@ -160,7 +160,7 @@ export default function SideNavigation({
             {!isCollapsed && (
               <Link href="/" className="block">
                 <h1 className="pl-2 text-[16px] font-bold tracking-tight text-neutral-900 dark:text-dark-1000">
-                  kan.bn
+                  ETC ProjectHub
                 </h1>
               </Link>
             )}
@@ -184,7 +184,7 @@ export default function SideNavigation({
               )}
             </Button>
           </div>
-          <div className="mx-1 mb-4 hidden w-auto border-b border-light-300 dark:border-dark-400 md:block" />
+          <div className="hidden w-auto mx-1 mb-4 border-b border-light-300 dark:border-dark-400 md:block" />
 
           <WorkspaceMenu isCollapsed={isCollapsed} />
           <ul role="list" className="space-y-1">
