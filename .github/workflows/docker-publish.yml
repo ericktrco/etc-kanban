@@ -203,6 +203,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
+            # Pull the latest configuration files (like docker-compose.yml)
+            git pull
             # Login to GHCR on the VPS (uses transient github token for security)
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             # Pull the newly pushed images
