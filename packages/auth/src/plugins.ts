@@ -194,73 +194,77 @@ export function createPlugins(db: dbClient) {
     magicLink({
       expiresIn: 60 * 60 * 24 * 7, // 7 days
       sendMagicLink: async ({ email, url }) => {
-        try {
-          const decodedUrl = decodeURIComponent(url);
-          log.info(
-            { email, isInvite: decodedUrl.includes("type=invite") },
-            "Sending magic link",
-          );
-          if (decodedUrl.includes("type=invite")) {
-            let inviterName = "";
-            let workspaceName = "";
+        // Fire-and-forget: send email in background so the API responds immediately.
+        // This prevents the invite/sign-in flow from blocking on slow SMTP on VPS.
+        void (async () => {
+          try {
+            const decodedUrl = decodeURIComponent(url);
+            log.info(
+              { email, isInvite: decodedUrl.includes("type=invite") },
+              "Sending magic link",
+            );
+            if (decodedUrl.includes("type=invite")) {
+              let inviterName = "";
+              let workspaceName = "";
 
-            try {
-              const urlObj = new URL(url);
-              const callbackUrl = urlObj.searchParams.get("callbackURL");
-              if (callbackUrl) {
-                const callbackParams = new URL(
-                  callbackUrl,
-                  process.env.NEXT_PUBLIC_BASE_URL,
-                ).searchParams;
-                const memberPublicId = callbackParams.get("memberPublicId");
+              try {
+                const urlObj = new URL(url);
+                const callbackUrl = urlObj.searchParams.get("callbackURL");
+                if (callbackUrl) {
+                  const callbackParams = new URL(
+                    callbackUrl,
+                    process.env.NEXT_PUBLIC_BASE_URL,
+                  ).searchParams;
+                  const memberPublicId = callbackParams.get("memberPublicId");
 
-                if (memberPublicId) {
-                  const member = await memberRepo.getByPublicId(
-                    db,
-                    memberPublicId,
-                  );
-                  if (member) {
-                    const [workspace, inviter] = await Promise.all([
-                      workspaceRepo.getById(db, member.workspaceId),
-                      userRepo.getById(db, member.createdBy),
-                    ]);
+                  if (memberPublicId) {
+                    const member = await memberRepo.getByPublicId(
+                      db,
+                      memberPublicId,
+                    );
+                    if (member) {
+                      const [workspace, inviter] = await Promise.all([
+                        workspaceRepo.getById(db, member.workspaceId),
+                        userRepo.getById(db, member.createdBy),
+                      ]);
 
-                    if (workspace) workspaceName = workspace.name;
-                    if (inviter) inviterName = inviter.name ?? "";
+                      if (workspace) workspaceName = workspace.name;
+                      if (inviter) inviterName = inviter.name ?? "";
+                    }
                   }
                 }
+              } catch (error) {
+                log.error({ err: error }, "Failed to fetch invite details");
               }
-            } catch (error) {
-              log.error({ err: error }, "Failed to fetch invite details");
-            }
 
-            await sendEmail(
-              email,
-              workspaceName
-                ? `Invitation to join the workspace ${workspaceName}`
-                : "Invitation to join workspace",
-              "JOIN_WORKSPACE",
-              {
-                magicLoginUrl: url,
-                inviterName,
-                workspaceName,
-              },
-            );
-          } else {
-            await sendEmail(
-              email,
-              process.env.NEXT_PUBLIC_WHITE_LABEL_HIDE_POWERED_BY === "true"
-                ? "Sign in to your account"
-                : "Sign in to Kan",
-              "MAGIC_LINK",
-              {
-                magicLoginUrl: url,
-              },
-            );
+              await sendEmail(
+                email,
+                workspaceName
+                  ? `Invitation to join the workspace ${workspaceName}`
+                  : "Invitation to join workspace",
+                "JOIN_WORKSPACE",
+                {
+                  magicLoginUrl: url,
+                  inviterName,
+                  workspaceName,
+                },
+              );
+            } else {
+              await sendEmail(
+                email,
+                process.env.NEXT_PUBLIC_WHITE_LABEL_HIDE_POWERED_BY === "true"
+                  ? "Sign in to your account"
+                  : "Sign in to Kan",
+                "MAGIC_LINK",
+                {
+                  magicLoginUrl: url,
+                },
+              );
+            }
+          } catch (error) {
+            log.error({ err: error, email }, "Error sending magic link");
           }
-        } catch (error) {
-          log.error({ err: error, email }, "Error sending magic link");
-        }
+        })();
       },
     }),
     // Generic OIDC provider

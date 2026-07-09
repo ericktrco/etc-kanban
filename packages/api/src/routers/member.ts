@@ -2,6 +2,10 @@ import { TRPCError } from "@trpc/server";
 import { env } from "next-runtime-env";
 import { z } from "zod";
 
+import { createLogger } from "@kan/logger";
+
+const log = createLogger("member-router");
+
 import * as inviteLinkRepo from "@kan/db/repository/inviteLink.repo";
 import * as memberRepo from "@kan/db/repository/member.repo";
 import * as permissionRepo from "@kan/db/repository/permission.repo";
@@ -162,10 +166,7 @@ export const memberRouter = createTRPCRouter({
       });
 
       if (!status) {
-        console.error("Failed to send magic link invitation:", {
-          email: input.email,
-          callbackURL: `/boards?type=invite&memberPublicId=${invite.publicId}`,
-        });
+        log.error({ email: input.email, callbackURL: `/boards?type=invite&memberPublicId=${invite.publicId}` }, "Failed to send magic link invitation");
 
         await memberRepo.softDelete(ctx.db, {
           memberId: invite.id,
