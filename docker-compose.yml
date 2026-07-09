@@ -1,6 +1,6 @@
 services:
   migrate:
-    image: ghcr.io/kanbn/kan-migrate:latest
+    image: ghcr.io/ericktrco/etc-kanban-migrate:edge
     container_name: ${CONTAINER_NAME:-kan-migrate}
     networks:
       - kan-network
@@ -16,7 +16,7 @@ services:
     restart: "no"
 
   web:
-    image: ghcr.io/kanbn/kan:edge
+    image: ghcr.io/ericktrco/etc-kanban:edge
     container_name: ${CONTAINER_NAME:-kan-web}
     ports:
       - "${WEB_PORT:-3000}:3000"
