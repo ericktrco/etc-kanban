@@ -17,6 +17,7 @@ export const create = async (
   db: dbClient,
   listInput: {
     name: string;
+    color?: string | null;
     createdBy: string;
     boardId: number;
     importId?: number;
@@ -40,6 +41,7 @@ export const create = async (
       .values({
         publicId: generateUID(),
         name: listInput.name,
+        color: listInput.color ?? null,
         createdBy: listInput.createdBy,
         boardId: listInput.boardId,
         index,
@@ -50,6 +52,7 @@ export const create = async (
         publicId: lists.publicId,
         boardId: lists.boardId,
         name: lists.name,
+        color: lists.color,
       });
 
     if (!result)
@@ -211,6 +214,7 @@ export const getByPublicId = async (db: dbClient, listPublicId: string) => {
       id: true,
       publicId: true,
       name: true,
+      color: true,
       boardId: true,
       index: true,
     },
@@ -242,19 +246,25 @@ export const getWithCardsByPublicId = async (
 export const update = async (
   db: dbClient,
   listInput: {
-    name: string;
+    name?: string;
+    color?: string | null;
   },
   args: {
     listPublicId: string;
   },
 ) => {
+  const updateData: { name?: string; color?: string | null } = {};
+  if (listInput.name !== undefined) updateData.name = listInput.name;
+  if (listInput.color !== undefined) updateData.color = listInput.color;
+
   const [result] = await db
     .update(lists)
-    .set({ name: listInput.name })
+    .set(updateData)
     .where(and(eq(lists.publicId, args.listPublicId), isNull(lists.deletedAt)))
     .returning({
       publicId: lists.publicId,
       name: lists.name,
+      color: lists.color,
     });
 
   return result;
@@ -337,6 +347,7 @@ export const reorder = async (
       columns: {
         publicId: true,
         name: true,
+        color: true,
       },
       where: eq(lists.publicId, args.listPublicId),
     });
@@ -419,7 +430,7 @@ export const getWorkspaceAndListIdByListPublicId = async (
   listPublicId: string,
 ) => {
   const result = await db.query.lists.findFirst({
-    columns: { id: true, name: true, createdBy: true },
+    columns: { id: true, name: true, color: true, createdBy: true },
     where: and(eq(lists.publicId, listPublicId), isNull(lists.deletedAt)),
     with: {
       board: {
@@ -437,6 +448,7 @@ export const getWorkspaceAndListIdByListPublicId = async (
         id: result.id,
         publicId: listPublicId,
         name: result.name,
+        color: result.color,
         createdBy: result.createdBy,
         workspaceId: result.board.workspaceId,
         boardPublicId: result.board.publicId,

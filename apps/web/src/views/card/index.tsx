@@ -9,6 +9,7 @@ import { IoChevronForwardSharp } from "react-icons/io5";
 import { authClient } from "@kan/auth/client";
 
 import Avatar from "~/components/Avatar";
+import ColorPicker from "~/components/ColorPicker";
 import Editor from "~/components/Editor";
 import FeedbackModal from "~/components/FeedbackModal";
 import { LabelForm } from "~/components/LabelForm";
@@ -118,6 +119,13 @@ export function CardRightPanel({ isTemplate }: { isTemplate?: boolean }) {
       };
     }) ?? [];
 
+  const utils = api.useUtils();
+  const updateCard = api.card.update.useMutation({
+    onSettled: async () => {
+      if (cardId) await invalidateCard(utils, cardId);
+    },
+  });
+
   return (
     <div className="h-full w-[360px] border-l-[1px] border-light-300 bg-light-50 p-8 text-light-900 dark:border-dark-300 dark:bg-dark-50 dark:text-dark-900">
       <div className="mb-4 flex w-full flex-row pt-[18px]">
@@ -136,6 +144,16 @@ export function CardRightPanel({ isTemplate }: { isTemplate?: boolean }) {
           labels={formattedLabels}
           isLoading={!card}
           disabled={!canEdit}
+        />
+      </div>
+      <div className="mb-4 flex w-full flex-row">
+        <p className="my-2 mb-2 w-[100px] text-sm font-medium">{t`Color`}</p>
+        <ColorPicker
+          selectedColor={card?.color}
+          onChange={(newColor) => {
+            if (!canEdit || !cardId) return;
+            updateCard.mutate({ cardPublicId: cardId, color: newColor });
+          }}
         />
       </div>
       {!isTemplate && (

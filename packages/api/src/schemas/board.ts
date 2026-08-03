@@ -15,6 +15,7 @@ export const boardListItemSchema = z.object({
     z.object({
       publicId: z.string(),
       name: z.string(),
+      color: z.string().nullable().optional(),
       index: z.number(),
     }),
   ),
@@ -38,6 +39,7 @@ const boardDetailCardSchema = z.object({
   publicId: z.string(),
   title: z.string(),
   description: z.string().nullable(),
+  color: z.string().nullable().optional(),
   index: z.number(),
   cardNumber: z.number().nullable(),
   dueDate: z.date().nullable(),
@@ -53,7 +55,7 @@ export const boardDetailSchema = z.object({
   publicId: z.string(),
   name: z.string(),
   slug: z.string(),
-  visibility: z.string(),
+  visibility: z.enum(["public", "private"]),
   isArchived: z.boolean(),
   favorite: z.boolean(),
   workspace: z.object({
@@ -66,6 +68,7 @@ export const boardDetailSchema = z.object({
     z.object({
       publicId: z.string(),
       name: z.string(),
+      color: z.string().nullable().optional(),
       index: z.number(),
       cards: z.array(boardDetailCardSchema),
     }),
@@ -74,6 +77,7 @@ export const boardDetailSchema = z.object({
     z.object({
       publicId: z.string(),
       name: z.string(),
+      color: z.string().nullable().optional(),
     }),
   ),
 });
@@ -83,6 +87,7 @@ const boardSlugCardSchema = z.object({
   publicId: z.string(),
   title: z.string(),
   description: z.string().nullable(),
+  color: z.string().nullable().optional(),
   index: z.number(),
   dueDate: z.date().nullable(),
   labels: z.array(labelSchema),
@@ -96,7 +101,7 @@ export const boardBySlugSchema = z.object({
   publicId: z.string(),
   name: z.string(),
   slug: z.string(),
-  visibility: z.string(),
+  visibility: z.enum(["public", "private"]),
   workspace: z.object({
     publicId: z.string(),
     name: z.string(),
@@ -107,6 +112,7 @@ export const boardBySlugSchema = z.object({
     z.object({
       publicId: z.string(),
       name: z.string(),
+      color: z.string().nullable().optional(),
       index: z.number(),
       cards: z.array(boardSlugCardSchema),
     }),
@@ -115,6 +121,7 @@ export const boardBySlugSchema = z.object({
     z.object({
       publicId: z.string(),
       name: z.string(),
+      color: z.string().nullable().optional(),
     }),
   ),
 });

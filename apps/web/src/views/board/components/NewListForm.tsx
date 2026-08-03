@@ -7,6 +7,7 @@ import type { NewListInput } from "@kan/api/types";
 import { generateUID } from "@kan/shared/utils";
 
 import Button from "~/components/Button";
+import ColorPicker from "~/components/ColorPicker";
 import Input from "~/components/Input";
 import Toggle from "~/components/Toggle";
 import { useModal } from "~/providers/modal";
@@ -15,6 +16,7 @@ import { api } from "~/utils/api";
 
 type NewListFormInput = NewListInput & {
   isCreateAnotherEnabled: boolean;
+  color?: string | null;
 };
 
 interface QueryParams {
@@ -40,12 +42,14 @@ export function NewListForm({
     useForm<NewListFormInput>({
       defaultValues: {
         name: "",
+        color: null,
         boardPublicId: boardPublicId,
         isCreateAnotherEnabled: false,
       },
     });
 
   const isCreateAnotherEnabled = watch("isCreateAnotherEnabled");
+  const selectedColor = watch("color");
 
   const createList = api.list.create.useMutation({
     onMutate: async (args) => {
@@ -59,6 +63,7 @@ export function NewListForm({
         const newList = {
           publicId: generateUID(),
           name: args.name,
+          color: args.color ?? null,
           boardId: 1,
           boardPublicId,
           cards: [],
@@ -91,16 +96,18 @@ export function NewListForm({
     if (nameElement) nameElement.focus();
   }, []);
 
-  const onSubmit = (data: NewListInput) => {
+  const onSubmit = (data: NewListFormInput) => {
     const isCreateAnotherEnabled = watch("isCreateAnotherEnabled");
     if (!isCreateAnotherEnabled) closeModal();
     reset({
       name: "",
+      color: null,
       isCreateAnotherEnabled,
     });
 
     createList.mutate({
       name: data.name,
+      color: data.color ?? null,
       boardPublicId,
     });
   };
@@ -124,17 +131,25 @@ export function NewListForm({
           </button>
         </div>
 
-        <Input
-          id="list-name"
-          placeholder={t`List name`}
-          {...register("name")}
-          onKeyDown={async (e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              await handleSubmit(onSubmit)();
-            }
-          }}
-        />
+        <div className="space-y-4">
+          <Input
+            id="list-name"
+            placeholder={t`List name`}
+            {...register("name")}
+            onKeyDown={async (e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                await handleSubmit(onSubmit)();
+              }
+            }}
+          />
+
+          <ColorPicker
+            selectedColor={selectedColor}
+            onChange={(color) => setValue("color", color)}
+            label={t`Column Accent Color`}
+          />
+        </div>
       </div>
       <div className="mt-12 flex items-center justify-end space-x-4 border-t border-light-600 px-5 pb-5 pt-5 dark:border-dark-600">
         <Toggle

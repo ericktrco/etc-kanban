@@ -244,6 +244,7 @@ export const getByPublicId = async (
         columns: {
           publicId: true,
           name: true,
+          color: true,
           boardId: true,
           index: true,
         },
@@ -253,6 +254,7 @@ export const getByPublicId = async (
               publicId: true,
               title: true,
               description: true,
+              color: true,
               listId: true,
               index: true,
               dueDate: true,
@@ -347,6 +349,7 @@ export const getByPublicId = async (
         columns: {
           publicId: true,
           name: true,
+          color: true,
         },
         where: isNull(lists.deletedAt),
         orderBy: [asc(lists.index)],
@@ -441,6 +444,7 @@ export const getBySlug = async (
         columns: {
           publicId: true,
           name: true,
+          color: true,
           boardId: true,
           index: true,
         },
@@ -450,6 +454,7 @@ export const getBySlug = async (
               publicId: true,
               title: true,
               description: true,
+              color: true,
               listId: true,
               index: true,
               dueDate: true,
@@ -523,6 +528,7 @@ export const getBySlug = async (
         columns: {
           publicId: true,
           name: true,
+          color: true,
         },
         where: isNull(lists.deletedAt),
         orderBy: [asc(lists.index)],

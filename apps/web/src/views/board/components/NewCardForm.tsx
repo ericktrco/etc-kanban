@@ -16,6 +16,7 @@ import type { WorkspaceMember } from "~/components/Editor";
 import Avatar from "~/components/Avatar";
 import Button from "~/components/Button";
 import CheckboxDropdown from "~/components/CheckboxDropdown";
+import ColorPicker from "~/components/ColorPicker";
 import DateSelector from "~/components/DateSelector";
 import Editor from "~/components/Editor";
 import Input from "~/components/Input";
@@ -30,6 +31,7 @@ import { formatMemberDisplayName, getAvatarUrl } from "~/utils/helpers";
 
 type NewCardFormInput = NewCardInput & {
   isCreateAnotherEnabled: boolean;
+  color?: string | null;
   dueDate?: Date | null;
 };
 
@@ -70,6 +72,7 @@ export function NewCardForm({
       memberPublicIds: [],
       isCreateAnotherEnabled: false,
       position: "start",
+      color: null,
       dueDate: null,
     },
     resetOnClose: true,
@@ -86,6 +89,7 @@ export function NewCardForm({
   const position = watch("position");
   const title = watch("title");
   const description = watch("description");
+  const color = watch("color");
   const dueDate = watch("dueDate");
   const [isDateSelectorOpen, setIsDateSelectorOpen] = useState(false);
 
@@ -145,6 +149,7 @@ export function NewCardForm({
               title: args.title,
               listId: 2,
               description: "",
+              color: args.color ?? null,
               dueDate: args.dueDate ?? null,
               cardNumber: null,
               comments: [],
@@ -162,9 +167,6 @@ export function NewCardForm({
                     ...member,
                     deletedAt: null,
                   })) ?? [],
-              comments: [],
-              checklists: [],
-              attachments: [],
               _filteredLabels: labelPublicIds.map((id) => ({ publicId: id })),
               _filteredMembers: memberPublicIds.map((id) => ({ publicId: id })),
               index: position === "start" ? 0 : list.cards.length,
@@ -209,6 +211,7 @@ export function NewCardForm({
           memberPublicIds: [],
           isCreateAnotherEnabled,
           position,
+          color: null,
           dueDate: null,
         };
         reset(newFormState);
@@ -267,6 +270,7 @@ export function NewCardForm({
       labelPublicIds: data.labelPublicIds,
       memberPublicIds: data.memberPublicIds,
       position: data.position,
+      color: data.color ?? null,
       dueDate: data.dueDate ?? null,
     });
   };
@@ -361,6 +365,13 @@ export function NewCardForm({
               enableYouTubeEmbed={false}
             />
           </div>
+        </div>
+        <div className="mt-3 rounded-md border border-light-400 bg-light-100 p-2 dark:border-dark-600 dark:bg-dark-300">
+          <ColorPicker
+            selectedColor={color}
+            onChange={(c) => setValue("color", c)}
+            label={t`Card Accent Color`}
+          />
         </div>
         <div className="mt-2 flex space-x-1">
           <div className="w-fit">

@@ -16,6 +16,7 @@ export const cardUpdateResponseSchema = z.object({
   publicId: z.string(),
   title: z.string(),
   description: z.string().nullable(),
+  color: z.string().nullable().optional(),
   dueDate: z.date().nullable(),
 });
 
@@ -46,6 +47,7 @@ export const cardDetailSchema = z.object({
   publicId: z.string(),
   title: z.string(),
   description: z.string().nullable(),
+  color: z.string().nullable().optional(),
   cardNumber: z.number().nullable(),
   index: z.number(),
   dueDate: z.date().nullable(),

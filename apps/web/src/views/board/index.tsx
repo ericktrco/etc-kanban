@@ -765,6 +765,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                                         >
                                           <Card
                                             title={card.title}
+                                            color={card.color}
                                             ticketNumber={
                                               card.cardNumber != null
                                                 ? `${boardData.workspace.cardPrefix}-${card.cardNumber}`

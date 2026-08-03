@@ -51,6 +51,7 @@ export const cardRouter = createTRPCRouter({
         labelPublicIds: z.array(z.string().min(12)),
         memberPublicIds: z.array(z.string().min(12)),
         position: z.enum(["start", "end"]),
+        color: z.string().nullable().optional(),
         dueDate: z.date().nullable().optional(),
       }),
     )
@@ -80,6 +81,7 @@ export const cardRouter = createTRPCRouter({
       const newCard = await cardRepo.create(ctx.db, {
         title: input.title,
         description: input.description,
+        color: input.color,
         createdBy: userId,
         listId: list.id,
         workspaceId: list.workspaceId,
@@ -861,6 +863,7 @@ export const cardRouter = createTRPCRouter({
         description: z.string().optional(),
         index: z.number().optional(),
         listPublicId: z.string().min(12).optional(),
+        color: z.string().nullable().optional(),
         dueDate: z.date().nullable().optional(),
       }),
     )
@@ -940,12 +943,18 @@ export const cardRouter = createTRPCRouter({
 
       const previousDueDate = existingCard.dueDate;
 
-      if (input.title || input.description || input.dueDate !== undefined) {
+      if (
+        input.title ||
+        input.description !== undefined ||
+        input.color !== undefined ||
+        input.dueDate !== undefined
+      ) {
         result = await cardRepo.update(
           ctx.db,
           {
             ...(input.title && { title: input.title }),
-            ...(input.description && { description: input.description }),
+            ...(input.description !== undefined && { description: input.description }),
+            ...(input.color !== undefined && { color: input.color }),
             ...(input.dueDate !== undefined && { dueDate: input.dueDate }),
           },
           { cardPublicId: input.cardPublicId },

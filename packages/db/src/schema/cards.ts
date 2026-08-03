@@ -62,6 +62,7 @@ export const cards = pgTable(
     publicId: varchar("publicId", { length: 12 }).notNull().unique(),
     title: text("title").notNull(),
     description: text("description"),
+    color: varchar("color", { length: 50 }),
     index: integer("index").notNull(),
     cardNumber: integer("cardNumber"),
     createdBy: uuid("createdBy").references(() => users.id, {

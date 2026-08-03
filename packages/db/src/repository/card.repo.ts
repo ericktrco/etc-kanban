@@ -40,6 +40,7 @@ export const create = async (
   cardInput: {
     title: string;
     description: string;
+    color?: string | null;
     createdBy: string;
     listId: number;
     workspaceId: number;
@@ -101,6 +102,7 @@ export const create = async (
         publicId: generateUID(),
         title: cardInput.title,
         description: cardInput.description,
+        color: cardInput.color ?? null,
         createdBy: cardInput.createdBy,
         listId: cardInput.listId,
         index: index,
@@ -112,6 +114,7 @@ export const create = async (
         listId: cards.listId,
         publicId: cards.publicId,
         cardNumber: cards.cardNumber,
+        color: cards.color,
       });
 
     if (!result[0]) throw new Error("Unable to create card");
@@ -203,6 +206,7 @@ export const update = async (
   cardInput: {
     title?: string;
     description?: string;
+    color?: string | null;
     dueDate?: Date | null;
   },
   args: {
@@ -214,6 +218,7 @@ export const update = async (
     .set({
       title: cardInput.title,
       description: cardInput.description,
+      color: cardInput.color !== undefined ? cardInput.color : undefined,
       dueDate: cardInput.dueDate !== undefined ? cardInput.dueDate : undefined,
       updatedAt: new Date(),
     })
@@ -223,6 +228,7 @@ export const update = async (
       publicId: cards.publicId,
       title: cards.title,
       description: cards.description,
+      color: cards.color,
       dueDate: cards.dueDate,
     });
 
@@ -257,6 +263,7 @@ export const getByPublicId = (db: dbClient, cardPublicId: string) => {
       publicId: true,
       title: true,
       description: true,
+      color: true,
       listId: true,
       dueDate: true,
     },
@@ -487,6 +494,7 @@ export const getWithListAndMembersByPublicId = async (
       publicId: true,
       title: true,
       description: true,
+      color: true,
       dueDate: true,
       createdBy: true,
       cardNumber: true,
