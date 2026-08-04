@@ -253,6 +253,13 @@
       "when": 1785742659554,
       "tag": "20260803073739_AddColorToListAndCard",
       "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1785848046285,
+      "tag": "20260804125406_AddColorToWorkspaceMembers",
+      "breakpoints": true
     }
   ]
 }

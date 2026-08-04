@@ -16,7 +16,6 @@ import type { WorkspaceMember } from "~/components/Editor";
 import Avatar from "~/components/Avatar";
 import Button from "~/components/Button";
 import CheckboxDropdown from "~/components/CheckboxDropdown";
-import ColorPicker from "~/components/ColorPicker";
 import DateSelector from "~/components/DateSelector";
 import Editor from "~/components/Editor";
 import Input from "~/components/Input";
@@ -366,13 +365,7 @@ export function NewCardForm({
             />
           </div>
         </div>
-        <div className="mt-3 rounded-md border border-light-400 bg-light-100 p-2 dark:border-dark-600 dark:bg-dark-300">
-          <ColorPicker
-            selectedColor={color}
-            onChange={(c) => setValue("color", c)}
-            label={t`Card Accent Color`}
-          />
-        </div>
+
         <div className="mt-2 flex space-x-1">
           <div className="w-fit">
             <CheckboxDropdown

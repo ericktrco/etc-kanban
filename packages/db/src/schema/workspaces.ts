@@ -104,6 +104,7 @@ export const workspaceMembers = pgTable("workspace_members", {
     { onDelete: "restrict" },
   ),
   status: memberStatusEnum("status").default("invited").notNull(),
+  color: varchar("color", { length: 50 }),
 }).enableRLS();
 
 export const workspaceMembersRelations = relations(

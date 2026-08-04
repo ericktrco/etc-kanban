@@ -49,7 +49,9 @@ export default function ColorPicker({
                   : "opacity-85 hover:opacity-100"
               }`}
             >
-              {isSelected && <HiCheck className="h-4 w-4 text-white drop-shadow" />}
+              {isSelected && (
+                <HiCheck className="h-4 w-4 text-white drop-shadow" />
+              )}
             </button>
           );
         })}

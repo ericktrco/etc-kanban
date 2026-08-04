@@ -24,6 +24,7 @@ import {
   generateUID,
   generateWorkspacePrefix,
   getDefaultPermissions,
+  getMemberDefaultColor,
 } from "@kan/shared";
 
 import * as permissionRepo from "./permission.repo";
@@ -122,6 +123,7 @@ export const create = async (
       role: "admin",
       roleId: adminRoleId,
       status: "active",
+      color: getMemberDefaultColor(workspaceInput.createdBy),
     });
   }
 
@@ -330,10 +332,31 @@ export const getMemberByPublicId = (db: dbClient, memberPublicId: string) => {
   return db.query.workspaceMembers.findFirst({
     columns: {
       id: true,
+      color: true,
     },
     where: eq(workspaceMembers.publicId, memberPublicId),
   });
 };
+
+export const getMemberByUserAndWorkspace = (
+  db: dbClient,
+  userId: string,
+  workspaceId: number,
+) => {
+  return db.query.workspaceMembers.findFirst({
+    columns: {
+      id: true,
+      publicId: true,
+      color: true,
+    },
+    where: and(
+      eq(workspaceMembers.userId, userId),
+      eq(workspaceMembers.workspaceId, workspaceId),
+      isNull(workspaceMembers.deletedAt),
+    ),
+  });
+};
+
 
 export const getAllMembersByPublicIds = (
   db: dbClient,

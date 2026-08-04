@@ -8,7 +8,11 @@ import * as checklistRepo from "@kan/db/repository/checklist.repo";
 import * as labelRepo from "@kan/db/repository/label.repo";
 import * as listRepo from "@kan/db/repository/list.repo";
 import * as workspaceRepo from "@kan/db/repository/workspace.repo";
-import { generateAttachmentUrl, generateAvatarUrl } from "@kan/shared/utils";
+import {
+  generateAttachmentUrl,
+  generateAvatarUrl,
+  getMemberDefaultColor,
+} from "@kan/shared/utils";
 
 import {
   activityItemSchema,
@@ -78,10 +82,20 @@ export const cardRouter = createTRPCRouter({
 
       await assertPermission(ctx.db, userId, list.workspaceId, "card:create");
 
+      let cardColor = input.color;
+      if (!cardColor) {
+        const member = await workspaceRepo.getMemberByUserAndWorkspace(
+          ctx.db,
+          userId,
+          list.workspaceId,
+        );
+        cardColor = member?.color ?? getMemberDefaultColor(userId);
+      }
+
       const newCard = await cardRepo.create(ctx.db, {
         title: input.title,
         description: input.description,
-        color: input.color,
+        color: cardColor,
         createdBy: userId,
         listId: list.id,
         workspaceId: list.workspaceId,
