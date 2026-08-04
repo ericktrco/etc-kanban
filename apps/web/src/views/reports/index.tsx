@@ -115,6 +115,26 @@ export default function ReportView() {
   const [selectedListIds, setSelectedListIds] = useState<string[]>([]);
   const [isDownloading, setIsDownloading] = useState(false);
 
+  // Compute start/end of day in local timezone for exact report date bounds
+  const localStartDate = new Date(
+    reportDate.getFullYear(),
+    reportDate.getMonth(),
+    reportDate.getDate(),
+    0,
+    0,
+    0,
+    0,
+  );
+  const localEndDate = new Date(
+    reportDate.getFullYear(),
+    reportDate.getMonth(),
+    reportDate.getDate(),
+    23,
+    59,
+    59,
+    999,
+  );
+
   // Fetch report data
   const {
     data: reportData,
@@ -124,6 +144,8 @@ export default function ReportView() {
     {
       workspacePublicId: workspace.publicId,
       date: reportDate.toISOString(),
+      startDate: localStartDate.toISOString(),
+      endDate: localEndDate.toISOString(),
       boardPublicIds: selectedBoardIds.length ? selectedBoardIds : undefined,
       listPublicIds: selectedListIds.length ? selectedListIds : undefined,
     },
@@ -418,6 +440,45 @@ function ReportDocument({
 
   return (
     <div style={{ padding: "0", backgroundColor: "#ffffff", color: "#000000" }}>
+      <style>{`
+        .report-card-description p {
+          margin: 2px 0;
+        }
+        .report-card-description ul {
+          list-style-type: disc !important;
+          padding-left: 18px !important;
+          margin: 4px 0 !important;
+        }
+        .report-card-description ol {
+          list-style-type: decimal !important;
+          padding-left: 18px !important;
+          margin: 4px 0 !important;
+        }
+        .report-card-description li {
+          display: list-item !important;
+          margin-bottom: 2px !important;
+        }
+        .report-card-description strong, .report-card-description b {
+          font-weight: 600 !important;
+        }
+        .report-card-description em, .report-card-description i {
+          font-style: italic !important;
+        }
+        .report-card-description blockquote {
+          border-left: 2px solid #d1d5db;
+          padding-left: 8px;
+          margin: 4px 0;
+          color: #6b7280;
+        }
+        .report-card-description code {
+          background-color: #f3f4f6;
+          padding: 1px 4px;
+          border-radius: 3px;
+          font-family: monospace;
+          font-size: 10px;
+        }
+      `}</style>
+
       {/* Company Header */}
       <div
         style={{
@@ -649,17 +710,19 @@ function ReportDocument({
                     >
                       <div style={{ fontWeight: 600 }}>{card.title}</div>
                       {columns.cardDescription &&
-                        stripHtml(card.description ?? "") && (
+                        stripHtml(card.description ?? "").trim() && (
                           <div
+                            className="report-card-description"
+                            dangerouslySetInnerHTML={{
+                              __html: card.description ?? "",
+                            }}
                             style={{
                               fontSize: 11,
                               color: "#4b5563",
-                              marginTop: "2px",
-                              whiteSpace: "pre-wrap",
+                              marginTop: "4px",
+                              lineHeight: 1.5,
                             }}
-                          >
-                            {stripHtml(card.description ?? "")}
-                          </div>
+                          />
                         )}
                     </div>
                   ))}

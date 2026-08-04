@@ -23,7 +23,9 @@ export const reportRouter = createTRPCRouter({
     .input(
       z.object({
         workspacePublicId: z.string().min(12),
-        date: z.string().datetime(),
+        date: z.string().datetime().optional(),
+        startDate: z.string().datetime().optional(),
+        endDate: z.string().datetime().optional(),
         boardPublicIds: z.array(z.string().min(12)).optional(),
         listPublicIds: z.array(z.string().min(12)).optional(),
       }),
@@ -67,12 +69,20 @@ export const reportRouter = createTRPCRouter({
 
       await assertPermission(ctx.db, userId, workspace.id, "board:view");
 
-      // Parse the date and compute start/end of day
-      const reportDate = new Date(input.date);
-      const startDate = new Date(reportDate);
-      startDate.setHours(0, 0, 0, 0);
-      const endDate = new Date(reportDate);
-      endDate.setHours(23, 59, 59, 999);
+      // Parse dates: prefer client-provided startDate and endDate for exact timezone accuracy
+      let startDate: Date;
+      let endDate: Date;
+
+      if (input.startDate && input.endDate) {
+        startDate = new Date(input.startDate);
+        endDate = new Date(input.endDate);
+      } else {
+        const reportDate = new Date(input.date ?? new Date().toISOString());
+        startDate = new Date(reportDate);
+        startDate.setHours(0, 0, 0, 0);
+        endDate = new Date(reportDate);
+        endDate.setHours(23, 59, 59, 999);
+      }
 
       // Resolve board internal IDs from publicIds if provided
       let boardIds: number[] | undefined;

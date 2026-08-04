@@ -1,4 +1,4 @@
-import { and, between, eq, isNull, sql } from "drizzle-orm";
+import { and, between, eq, isNull, or, sql } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@kan/db/schema";
 
 /**
- * Fetch cards that had activity on a given date, grouped by board.
+ * Fetch cards that had activity or were created on a given date range, grouped by board.
  * Each card appears only once even if it had multiple activities that day.
  */
 export const getCardsByActivityDate = async (
@@ -32,14 +32,17 @@ export const getCardsByActivityDate = async (
       listName: lists.name,
       listPublicId: lists.publicId,
     })
-    .from(cardActivities)
-    .innerJoin(cards, eq(cardActivities.cardId, cards.id))
+    .from(cards)
     .innerJoin(lists, eq(cards.listId, lists.id))
     .innerJoin(boards, eq(lists.boardId, boards.id))
+    .leftJoin(cardActivities, eq(cardActivities.cardId, cards.id))
     .where(
       and(
         eq(boards.workspaceId, args.workspaceId),
-        between(cardActivities.createdAt, args.startDate, args.endDate),
+        or(
+          between(cardActivities.createdAt, args.startDate, args.endDate),
+          between(cards.createdAt, args.startDate, args.endDate),
+        ),
         isNull(cards.deletedAt),
         isNull(lists.deletedAt),
         isNull(boards.deletedAt),
