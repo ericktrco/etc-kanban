@@ -59,7 +59,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        321
+        339
       ]
     ],
     "translation": "{0} | {1}"
@@ -107,7 +107,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        462
+        473
       ]
     ],
     "translation": "{0} labels"
@@ -391,7 +391,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        476
+        494
       ],
       [
         "src/views/public/board/CardModal.tsx",
@@ -443,7 +443,7 @@
     "origin": [
       [
         "src/views/board/components/List.tsx",
-        136
+        196
       ]
     ],
     "translation": "Add a card"
@@ -830,6 +830,18 @@
     ],
     "translation": "Advanced security, compliance, and dedicated support for large organizations."
   },
+  "9ywEgZ": {
+    "translation": "All Boards",
+    "message": "All Boards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportBoardFilter.tsx",
+        54
+      ]
+    ]
+  },
   "h2ztFt": {
     "message": "All Free features +",
     "placeholders": {},
@@ -841,6 +853,18 @@
       ]
     ],
     "translation": "All Free features +"
+  },
+  "BHWx+g": {
+    "translation": "All Lists",
+    "message": "All Lists",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportListFilter.tsx",
+        55
+      ]
+    ]
   },
   "nryrgW": {
     "message": "All member permission overrides have been reset to their role defaults.",
@@ -1489,7 +1513,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        321
+        339
       ],
       [
         "src/views/public/board/index.tsx",
@@ -1521,6 +1545,18 @@
       ]
     ],
     "translation": "Board archived"
+  },
+  "0rO/nW": {
+    "translation": "Board Lists",
+    "message": "Board Lists",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        345
+      ]
+    ]
   },
   "wE3hGS": {
     "message": "Board moved",
@@ -1681,11 +1717,15 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        97
+        99
       ],
       [
         "src/views/pricing/components/FeatureComparisonTable.tsx",
         73
+      ],
+      [
+        "src/views/reports/index.tsx",
+        330
       ]
     ],
     "translation": "Boards"
@@ -2172,6 +2212,10 @@
         236
       ],
       [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        206
+      ],
+      [
         "src/views/settings/components/Avatar.tsx",
         287
       ],
@@ -2209,10 +2253,34 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        321
+        339
       ]
     ],
     "translation": "Card"
+  },
+  "9DvR/P": {
+    "translation": "Card Accent Color",
+    "message": "Card Accent Color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/NewCardForm.tsx",
+        373
+      ]
+    ]
+  },
+  "Gzz7AA": {
+    "translation": "Card Description",
+    "message": "Card Description",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        413
+      ]
+    ]
   },
   "sU2uWc": {
     "message": "Card duplicated",
@@ -2261,11 +2329,11 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        384
+        402
       ],
       [
         "src/views/card/index.tsx",
-        421
+        439
       ]
     ],
     "translation": "Card not found"
@@ -2277,7 +2345,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        328
+        332
       ]
     ],
     "translation": "Card title"
@@ -2301,6 +2369,30 @@
       ]
     ],
     "translation": "Card URL copied to clipboard"
+  },
+  "5i2f9r": {
+    "translation": "Change column color",
+    "message": "Change column color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/List.tsx",
+        207
+      ]
+    ]
+  },
+  "D8o62U": {
+    "translation": "Change Logo",
+    "message": "Change Logo",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        146
+      ]
+    ]
   },
   "VhMDMg": {
     "message": "Change Password",
@@ -2541,11 +2633,19 @@
       ],
       [
         "src/views/card/index.tsx",
-        375
+        393
       ],
       [
         "src/views/members/components/EditMemberPermissionsModal.tsx",
         172
+      ],
+      [
+        "src/views/reports/components/ReportBoardFilter.tsx",
+        75
+      ],
+      [
+        "src/views/reports/components/ReportListFilter.tsx",
+        76
       ],
       [
         "src/views/settings/components/NewApiKeyModal.tsx",
@@ -2590,6 +2690,58 @@
     ],
     "translation": "Collaboration"
   },
+  "jZlrte": {
+    "translation": "Color",
+    "message": "Color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/card/index.tsx",
+        150
+      ]
+    ]
+  },
+  "/uq0PY": {
+    "translation": "Column Accent Color",
+    "message": "Column Accent Color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/List.tsx",
+        249
+      ],
+      [
+        "src/views/board/components/NewListForm.tsx",
+        150
+      ]
+    ]
+  },
+  "iaigvM": {
+    "translation": "Column color",
+    "message": "Column color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/board/components/List.tsx",
+        163
+      ]
+    ]
+  },
+  "jEu4bB": {
+    "translation": "Columns",
+    "message": "Columns",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        404
+      ]
+    ]
+  },
   "AUYALh": {
     "message": "Coming soon",
     "placeholders": {},
@@ -2633,6 +2785,30 @@
       ]
     ],
     "translation": "Company"
+  },
+  "50rx07": {
+    "translation": "Company Logo",
+    "message": "Company Logo",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        111
+      ]
+    ]
+  },
+  "zGbOVS": {
+    "translation": "Company Name",
+    "message": "Company Name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        97
+      ]
+    ]
   },
   "bD8I7O": {
     "message": "Complete",
@@ -2946,6 +3122,30 @@
     ],
     "translation": "Convert to link"
   },
+  "FxVG/l": {
+    "translation": "Copied to clipboard",
+    "message": "Copied to clipboard",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        263
+      ]
+    ]
+  },
+  "RqPqHm": {
+    "translation": "Copy as Image",
+    "message": "Copy as Image",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        367
+      ]
+    ]
+  },
   "5RkSzq": {
     "message": "Copy board link",
     "placeholders": {},
@@ -2981,6 +3181,26 @@
       ]
     ],
     "translation": "Copy checklists"
+  },
+  "9sj0G8": {
+    "translation": "Copy failed",
+    "message": "Copy failed",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        250
+      ],
+      [
+        "src/views/reports/index.tsx",
+        269
+      ],
+      [
+        "src/views/reports/index.tsx",
+        279
+      ]
+    ]
   },
   "fDQ7hA": {
     "message": "Copy labels",
@@ -3030,6 +3250,18 @@
     ],
     "translation": "Copy ticket ID"
   },
+  "OvEjsP": {
+    "translation": "Copying...",
+    "message": "Copying...",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        367
+      ]
+    ]
+  },
   "9PaIxv": {
     "message": "Core features",
     "placeholders": {},
@@ -3069,11 +3301,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        527
+        538
       ],
       [
         "src/views/board/components/NewListForm.tsx",
-        141
+        156
       ]
     ],
     "translation": "Create another"
@@ -3097,7 +3329,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        537
+        548
       ]
     ],
     "translation": "Create card"
@@ -3145,7 +3377,7 @@
     "origin": [
       [
         "src/views/board/components/NewListForm.tsx",
-        153
+        168
       ]
     ],
     "translation": "Create list"
@@ -3189,7 +3421,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        424
+        435
       ],
       [
         "src/views/card/components/LabelSelector.tsx",
@@ -3463,6 +3695,18 @@
     ],
     "translation": "Customer Support"
   },
+  "RglIdX": {
+    "translation": "Daily Work Report",
+    "message": "Daily Work Report",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        306
+      ]
+    ]
+  },
   "pvnfJD": {
     "message": "Dark",
     "placeholders": {},
@@ -3474,6 +3718,18 @@
       ]
     ],
     "translation": "Dark"
+  },
+  "mYGY3B": {
+    "translation": "Date",
+    "message": "Date",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        410
+      ]
+    ]
   },
   "cp1rsD": {
     "message": "Deactivate invite link",
@@ -3498,6 +3754,18 @@
       ]
     ],
     "translation": "Dedicated account manager"
+  },
+  "OcxFoS": {
+    "translation": "Default / None",
+    "message": "Default / None",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/ColorPicker.tsx",
+        28
+      ]
+    ]
   },
   "P8Cunr": {
     "message": "Default username",
@@ -3626,7 +3894,7 @@
     "origin": [
       [
         "src/views/board/components/List.tsx",
-        147
+        218
       ]
     ],
     "translation": "Delete list"
@@ -3975,6 +4243,18 @@
     ],
     "translation": "Done"
   },
+  "iBVmXp": {
+    "translation": "Download as Image",
+    "message": "Download as Image",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        376
+      ]
+    ]
+  },
   "R3FsF4": {
     "message": "Download failed",
     "placeholders": {},
@@ -3983,9 +4263,25 @@
       [
         "src/views/card/components/AttachmentThumbnails.tsx",
         142
+      ],
+      [
+        "src/views/reports/index.tsx",
+        227
       ]
     ],
     "translation": "Download failed"
+  },
+  "cCfxH1": {
+    "translation": "Downloading...",
+    "message": "Downloading...",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        376
+      ]
+    ]
   },
   "XicmhT": {
     "message": "Due date",
@@ -3998,11 +4294,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        479
+        490
       ],
       [
         "src/views/card/index.tsx",
-        153
+        171
       ]
     ],
     "translation": "Due date"
@@ -4098,6 +4394,18 @@
       ]
     ],
     "translation": "Duplicating…"
+  },
+  "zuvsax": {
+    "translation": "e.g. 8:00 AM\nTO\n6:00 PM",
+    "message": "e.g. 8:00 AM\nTO\n6:00 PM",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        196
+      ]
+    ]
   },
   "ePK91l": {
     "message": "Edit",
@@ -4283,6 +4591,22 @@
     ],
     "translation": "Email visibility"
   },
+  "dg17Gh": {
+    "translation": "Employee Name",
+    "message": "Employee Name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        158
+      ],
+      [
+        "src/views/reports/index.tsx",
+        408
+      ]
+    ]
+  },
   "bFREhu": {
     "message": "End of list",
     "placeholders": {},
@@ -4339,6 +4663,30 @@
     ],
     "translation": "Enter a custom title"
   },
+  "h7XHBV": {
+    "translation": "Enter company name",
+    "message": "Enter company name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        105
+      ]
+    ]
+  },
+  "TEiYyt": {
+    "translation": "Enter employee name",
+    "message": "Enter employee name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        166
+      ]
+    ]
+  },
   "rQRXo8": {
     "message": "Enter new secret to update",
     "placeholders": {},
@@ -4350,6 +4698,18 @@
       ]
     ],
     "translation": "Enter new secret to update"
+  },
+  "cmumcS": {
+    "translation": "Enter position or title",
+    "message": "Enter position or title",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        181
+      ]
+    ]
   },
   "fR9laE": {
     "message": "Enter your current password",
@@ -5016,6 +5376,30 @@
     ],
     "translation": "Filter"
   },
+  "P1GzzZ": {
+    "translation": "Filter by board",
+    "message": "Filter by board",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportBoardFilter.tsx",
+        43
+      ]
+    ]
+  },
+  "X512md": {
+    "translation": "Filter by List/Column",
+    "message": "Filter by List/Column",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportListFilter.tsx",
+        44
+      ]
+    ]
+  },
   "l31EoQ": {
     "message": "Find answers to common questions about Kan. Can't find what you're looking for? Feel free to <0>contact us</0>.",
     "placeholders": {},
@@ -5191,6 +5575,18 @@
       ]
     ],
     "translation": "General"
+  },
+  "USKcnL": {
+    "translation": "Generate and download your daily work accomplishment report",
+    "message": "Generate and download your daily work accomplishment report",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        309
+      ]
+    ]
   },
   "ZDIydz": {
     "message": "Get started",
@@ -5391,7 +5787,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        105
+        107
       ],
       [
         "src/pages/404.tsx",
@@ -5419,10 +5815,22 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        129
+        131
       ]
     ],
     "translation": "Go to members"
+  },
+  "G641og": {
+    "translation": "Go to reports",
+    "message": "Go to reports",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        143
+      ]
+    ]
   },
   "1WuwiM": {
     "message": "Go to settings",
@@ -5431,7 +5839,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        141
+        155
       ]
     ],
     "translation": "Go to settings"
@@ -5443,7 +5851,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        117
+        119
       ]
     ],
     "translation": "Go to templates"
@@ -6128,11 +6536,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        428
+        439
       ],
       [
         "src/views/card/index.tsx",
-        133
+        141
       ]
     ],
     "translation": "Labels"
@@ -6361,7 +6769,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        124
+        132
       ]
     ],
     "translation": "List"
@@ -6373,7 +6781,7 @@
     "origin": [
       [
         "src/views/board/components/NewListForm.tsx",
-        129
+        137
       ]
     ],
     "translation": "List name"
@@ -6566,6 +6974,18 @@
     ],
     "translation": "Marketing"
   },
+  "BM+2As": {
+    "translation": "Max 2MB. PNG, JPG recommended.",
+    "message": "Max 2MB. PNG, JPG recommended.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        149
+      ]
+    ]
+  },
   "agPptk": {
     "message": "Medium",
     "placeholders": {},
@@ -6641,7 +7061,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        121
+        123
       ],
       [
         "src/views/board/components/Filters.tsx",
@@ -6649,11 +7069,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        386
+        397
       ],
       [
         "src/views/card/index.tsx",
-        143
+        161
       ],
       [
         "src/views/members/index.tsx",
@@ -6944,7 +7364,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        311
+        315
       ]
     ],
     "translation": "New card"
@@ -6992,7 +7412,7 @@
     "origin": [
       [
         "src/views/board/components/NewListForm.tsx",
-        113
+        120
       ],
       [
         "src/views/board/index.tsx",
@@ -7112,6 +7532,18 @@
       ]
     ],
     "translation": "No {0}"
+  },
+  "dDO51N": {
+    "translation": "No activity found for this date",
+    "message": "No activity found for this date",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        442
+      ]
+    ]
   },
   "tlhgDC": {
     "message": "No archived boards",
@@ -7916,11 +8348,11 @@
       ],
       [
         "src/views/board/components/NewCardForm.tsx",
-        193
+        195
       ],
       [
         "src/views/board/components/NewListForm.tsx",
-        79
+        84
       ],
       [
         "src/views/board/components/NewTemplateForm.tsx",
@@ -8020,11 +8452,11 @@
       ],
       [
         "src/views/card/index.tsx",
-        236
+        254
       ],
       [
         "src/views/card/index.tsx",
-        249
+        267
       ],
       [
         "src/views/members/components/DeleteMemberConfirmation.tsx",
@@ -8152,6 +8584,30 @@
       ]
     ],
     "translation": "Please try again."
+  },
+  "p/78dY": {
+    "translation": "Position",
+    "message": "Position",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        409
+      ]
+    ]
+  },
+  "hJWUkP": {
+    "translation": "Position / Title",
+    "message": "Position / Title",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        173
+      ]
+    ]
   },
   "nYNMZZ": {
     "message": "Position in list (0 = first, leave empty for end)",
@@ -8608,6 +9064,58 @@
     ],
     "translation": "renamed checklist item to <0>{0}</0>"
   },
+  "cb07/K": {
+    "translation": "Report downloaded",
+    "message": "Report downloaded",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        221
+      ]
+    ]
+  },
+  "nutMuO": {
+    "translation": "Report Settings",
+    "message": "Report Settings",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        82
+      ]
+    ]
+  },
+  "CZ3R+W": {
+    "translation": "Report settings have been updated.",
+    "message": "Report settings have been updated.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        194
+      ]
+    ]
+  },
+  "t9yxlZ": {
+    "translation": "Reports",
+    "message": "Reports",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/SideNavigation.tsx",
+        135
+      ],
+      [
+        "src/views/reports/index.tsx",
+        300
+      ]
+    ]
+  },
   "Yx0Ud8": {
     "message": "Requested",
     "placeholders": {},
@@ -8812,6 +9320,18 @@
     ],
     "translation": "Save changes"
   },
+  "UGT5vp": {
+    "translation": "Save Settings",
+    "message": "Save Settings",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        208
+      ]
+    ]
+  },
   "MdwUGG": {
     "message": "Save time with reusable board templates.",
     "placeholders": {},
@@ -8975,6 +9495,18 @@
       ]
     ],
     "translation": "Select at least one event"
+  },
+  "chL17A": {
+    "translation": "Select color",
+    "message": "Select color",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/components/ColorPicker.tsx",
+        15
+      ]
+    ]
   },
   "rYUZIe": {
     "message": "Select source",
@@ -9151,7 +9683,11 @@
       ],
       [
         "src/components/SideNavigation.tsx",
-        133
+        147
+      ],
+      [
+        "src/views/reports/index.tsx",
+        357
       ]
     ],
     "translation": "Settings"
@@ -9239,6 +9775,18 @@
       ]
     ],
     "translation": "Settings | Workspace"
+  },
+  "iMxx2A": {
+    "translation": "Settings saved",
+    "message": "Settings saved",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        193
+      ]
+    ]
   },
   "CTqTgr": {
     "message": "Shortcuts",
@@ -9539,15 +10087,15 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        225
+        239
       ],
       [
         "src/components/SideNavigation.tsx",
-        226
+        240
       ],
       [
         "src/components/SideNavigation.tsx",
-        236
+        250
       ]
     ],
     "translation": "Start free trial"
@@ -9791,7 +10339,7 @@
     "origin": [
       [
         "src/components/SideNavigation.tsx",
-        109
+        111
       ],
       [
         "src/views/home/components/Features.tsx",
@@ -10035,6 +10583,30 @@
       ]
     ],
     "translation": "The page you're looking for doesn't exist or has been moved."
+  },
+  "VgFR7L": {
+    "translation": "The report image has been copied to your clipboard.",
+    "message": "The report image has been copied to your clipboard.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        264
+      ]
+    ]
+  },
+  "gijfbx": {
+    "translation": "The report image has been saved.",
+    "message": "The report image has been saved.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        222
+      ]
+    ]
   },
   "fQCrjt": {
     "message": "The visibility of your board has been set to {0}.",
@@ -10348,6 +10920,18 @@
     ],
     "translation": "Token is required"
   },
+  "fIkicL": {
+    "translation": "Total Working Time",
+    "message": "Total Working Time",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        414
+      ]
+    ]
+  },
   "eEQyz+": {
     "message": "Track all card changes with detailed activity history.",
     "placeholders": {},
@@ -10424,6 +11008,18 @@
     ],
     "translation": "Trusted by fast-moving teams<0/>around the world"
   },
+  "3CFb/z": {
+    "translation": "Try selecting a different date or adjusting your board filters",
+    "message": "Try selecting a different date or adjusting your board filters",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        445
+      ]
+    ]
+  },
   "bZSICm": {
     "message": "Unable to add checklist item",
     "placeholders": {},
@@ -10455,7 +11051,7 @@
     "origin": [
       [
         "src/views/card/index.tsx",
-        248
+        266
       ]
     ],
     "translation": "Unable to add label"
@@ -10515,7 +11111,7 @@
     "origin": [
       [
         "src/views/board/components/NewCardForm.tsx",
-        190
+        192
       ]
     ],
     "translation": "Unable to create card"
@@ -10539,7 +11135,7 @@
     "origin": [
       [
         "src/views/board/components/NewListForm.tsx",
-        78
+        83
       ]
     ],
     "translation": "Unable to create list"
@@ -10675,6 +11271,34 @@
       ]
     ],
     "translation": "Unable to duplicate card"
+  },
+  "CC4yp/": {
+    "translation": "Unable to generate report image.",
+    "message": "Unable to generate report image.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        251
+      ]
+    ]
+  },
+  "1tybx2": {
+    "translation": "Unable to generate the report image.",
+    "message": "Unable to generate the report image.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        228
+      ],
+      [
+        "src/views/reports/index.tsx",
+        280
+      ]
+    ]
   },
   "d196/6": {
     "message": "Unable to move board",
@@ -10823,7 +11447,7 @@
       ],
       [
         "src/views/card/index.tsx",
-        235
+        253
       ]
     ],
     "translation": "Unable to update card"
@@ -11372,6 +11996,18 @@
     ],
     "translation": "Upload failed"
   },
+  "kcsung": {
+    "translation": "Upload Logo",
+    "message": "Upload Logo",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        146
+      ]
+    ]
+  },
   "BBUDfW": {
     "message": "Urgent",
     "placeholders": {},
@@ -11463,6 +12099,18 @@
       ]
     ],
     "translation": "URL must be at least 3 characters long"
+  },
+  "1+Zwfh": {
+    "translation": "Use new lines for formatting (e.g. \"8:00 AM\", \"TO\", \"6:00 PM\")",
+    "message": "Use new lines for formatting (e.g. \"8:00 AM\", \"TO\", \"6:00 PM\")",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        199
+      ]
+    ]
   },
   "QNtP5M": {
     "message": "Use template",
@@ -11872,6 +12520,42 @@
     ],
     "translation": "Why make an open source Trello?"
   },
+  "gPg9dn": {
+    "translation": "Work Accomplished",
+    "message": "Work Accomplished",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        412
+      ]
+    ]
+  },
+  "YQtOGR": {
+    "translation": "Work Location",
+    "message": "Work Location",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        411
+      ]
+    ]
+  },
+  "WZNa3a": {
+    "translation": "Working Time",
+    "message": "Working Time",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/components/ReportSettingsModal.tsx",
+        188
+      ]
+    ]
+  },
   "pmUArF": {
     "message": "Workspace",
     "placeholders": {},
@@ -11900,6 +12584,10 @@
       [
         "src/views/public/boards/index.tsx",
         75
+      ],
+      [
+        "src/views/reports/index.tsx",
+        300
       ]
     ],
     "translation": "Workspace"
@@ -12252,7 +12940,7 @@
     "origin": [
       [
         "src/views/board/components/List.tsx",
-        117
+        176
       ],
       [
         "src/views/board/components/UpdateBoardSlugButton.tsx",
@@ -12445,6 +13133,18 @@
       ]
     ],
     "translation": "Your boards have been imported."
+  },
+  "ENGSEs": {
+    "translation": "Your browser may not support copying images directly to the clipboard.",
+    "message": "Your browser may not support copying images directly to the clipboard.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      [
+        "src/views/reports/index.tsx",
+        270
+      ]
+    ]
   },
   "LqWW5F": {
     "message": "Your display name has been updated.",

@@ -5,6 +5,7 @@ import {
   HiOutlineArrowDownTray,
   HiOutlineCalendarDays,
   HiOutlineCog6Tooth,
+  HiOutlineDocumentDuplicate,
   HiOutlineFunnel,
 } from "react-icons/hi2";
 
@@ -114,6 +115,7 @@ export default function ReportView() {
   const [showListFilter, setShowListFilter] = useState(false);
   const [selectedListIds, setSelectedListIds] = useState<string[]>([]);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isCopying, setIsCopying] = useState(false);
 
   // Compute start/end of day in local timezone for exact report date bounds
   const localStartDate = new Date(
@@ -231,6 +233,57 @@ export default function ReportView() {
     }
   }, [reportDate, showPopup]);
 
+  const handleCopyImage = useCallback(async () => {
+    if (!reportRef.current) return;
+    setIsCopying(true);
+    try {
+      const canvas = await html2canvas(reportRef.current, {
+        scale: 2,
+        backgroundColor: "#ffffff",
+        useCORS: true,
+        logging: false,
+      });
+
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          showPopup({
+            header: t`Copy failed`,
+            message: t`Unable to generate report image.`,
+            icon: "error",
+          });
+          setIsCopying(false);
+          return;
+        }
+
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ [blob.type]: blob }),
+          ]);
+          showPopup({
+            header: t`Copied to clipboard`,
+            message: t`The report image has been copied to your clipboard.`,
+            icon: "success",
+          });
+        } catch {
+          showPopup({
+            header: t`Copy failed`,
+            message: t`Your browser may not support copying images directly to the clipboard.`,
+            icon: "error",
+          });
+        } finally {
+          setIsCopying(false);
+        }
+      }, "image/png");
+    } catch {
+      showPopup({
+        header: t`Copy failed`,
+        message: t`Unable to generate the report image.`,
+        icon: "error",
+      });
+      setIsCopying(false);
+    }
+  }, [showPopup]);
+
   const handleDateChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = e.target.value;
@@ -304,10 +357,20 @@ export default function ReportView() {
               {t`Settings`}
             </Button>
             <Button
+              iconLeft={<HiOutlineDocumentDuplicate className="h-4 w-4" />}
+              onClick={handleCopyImage}
+              variant="secondary"
+              disabled={
+                isCopying || isDownloading || isLoading || !reportData?.boards.length
+              }
+            >
+              {isCopying ? t`Copying...` : t`Copy as Image`}
+            </Button>
+            <Button
               iconLeft={<HiOutlineArrowDownTray className="h-4 w-4" />}
               onClick={handleDownload}
               disabled={
-                isDownloading || isLoading || !reportData?.boards.length
+                isDownloading || isCopying || isLoading || !reportData?.boards.length
               }
             >
               {isDownloading ? t`Downloading...` : t`Download as Image`}
