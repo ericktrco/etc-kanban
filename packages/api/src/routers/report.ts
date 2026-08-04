@@ -114,6 +114,7 @@ export const reportRouter = createTRPCRouter({
         endDate,
         boardIds,
         listIds,
+        userId,
       });
 
       return { boards };

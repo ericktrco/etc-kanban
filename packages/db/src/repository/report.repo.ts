@@ -5,11 +5,14 @@ import {
   boards,
   cardActivities,
   cards,
+  cardToWorkspaceMembers,
   lists,
+  workspaceMembers,
 } from "@kan/db/schema";
 
 /**
  * Fetch cards that had activity or were created on a given date range, grouped by board.
+ * Filtered by user (creator, assigned member, or activity author) if userId is provided.
  * Each card appears only once even if it had multiple activities that day.
  */
 export const getCardsByActivityDate = async (
@@ -20,6 +23,7 @@ export const getCardsByActivityDate = async (
     endDate: Date;
     boardIds?: number[];
     listIds?: number[];
+    userId?: string;
   },
 ) => {
   const results = await db
@@ -36,6 +40,14 @@ export const getCardsByActivityDate = async (
     .innerJoin(lists, eq(cards.listId, lists.id))
     .innerJoin(boards, eq(lists.boardId, boards.id))
     .leftJoin(cardActivities, eq(cardActivities.cardId, cards.id))
+    .leftJoin(
+      cardToWorkspaceMembers,
+      eq(cardToWorkspaceMembers.cardId, cards.id),
+    )
+    .leftJoin(
+      workspaceMembers,
+      eq(cardToWorkspaceMembers.workspaceMemberId, workspaceMembers.id),
+    )
     .where(
       and(
         eq(boards.workspaceId, args.workspaceId),
@@ -46,6 +58,19 @@ export const getCardsByActivityDate = async (
         isNull(cards.deletedAt),
         isNull(lists.deletedAt),
         isNull(boards.deletedAt),
+        args.userId
+          ? or(
+              eq(cards.createdBy, args.userId),
+              and(
+                eq(cardActivities.createdBy, args.userId),
+                between(cardActivities.createdAt, args.startDate, args.endDate),
+              ),
+              and(
+                eq(workspaceMembers.userId, args.userId),
+                isNull(workspaceMembers.deletedAt),
+              ),
+            )
+          : undefined,
         args.boardIds?.length
           ? sql`${boards.id} IN (${sql.join(
               args.boardIds.map((id) => sql`${id}`),
